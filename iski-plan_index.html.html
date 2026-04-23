@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>iSKI 中階體驗課產品上市計畫</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif; background: #f5f5f3; color: #1a1a1a; line-height: 1.7; }
+  .page { max-width: 820px; margin: 2rem auto; background: #fff; border-radius: 16px; padding: 3rem; box-shadow: 0 2px 12px rgba(0,0,0,0.07); }
+  .header { margin-bottom: 2.5rem; }
+  .header-meta { font-size: 12px; color: #888; margin-bottom: 8px; letter-spacing: 0.05em; }
+  .header-title { font-size: 28px; font-weight: 600; color: #111; margin-bottom: 12px; }
+  .tags { display: flex; gap: 8px; flex-wrap: wrap; }
+  .tag { display: inline-block; font-size: 12px; padding: 4px 12px; border-radius: 20px; }
+  .tag-green { background: #e6f4ec; color: #2a7a4b; }
+  .tag-blue { background: #e6f0fb; color: #1a5fa0; }
+  .tag-amber { background: #fdf3e3; color: #8a5a0a; }
+  .divider { border: none; border-top: 1px solid #eee; margin: 2.5rem 0; }
+  .section { margin-bottom: 0; }
+  .section-label { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; color: #aaa; text-transform: uppercase; margin-bottom: 4px; }
+  .section-title { font-size: 20px; font-weight: 600; color: #111; margin-bottom: 1.25rem; border-left: 4px solid #1D9E75; padding-left: 12px; }
+  .body-text { font-size: 14px; color: #555; line-height: 1.85; margin-bottom: 0.75rem; }
+  .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin-bottom: 1rem; }
+  .card { background: #fafaf8; border: 1px solid #eee; border-radius: 12px; padding: 1rem 1.25rem; }
+  .card-label { font-size: 12px; color: #888; margin-bottom: 4px; }
+  .card-value { font-size: 16px; font-weight: 600; color: #111; }
+  .card-sub { font-size: 12px; color: #aaa; margin-top: 4px; line-height: 1.5; }
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .audience-card { background: #fafaf8; border-radius: 10px; padding: 1rem; border-left: 4px solid #1D9E75; }
+  .audience-card.secondary { border-left-color: #ccc; margin-top: 12px; }
+  .audience-title { font-size: 13px; font-weight: 600; color: #111; margin-bottom: 6px; }
+  .audience-desc { font-size: 13px; color: #666; line-height: 1.65; }
+  .positioning-box { background: #f0faf5; border-radius: 10px; padding: 1rem 1.25rem; margin-bottom: 1.25rem; border-left: 4px solid #1D9E75; }
+  .positioning-headline { font-size: 16px; font-weight: 600; color: #0f6e56; margin-bottom: 4px; }
+  .positioning-sub { font-size: 13px; color: #555; }
+  .pricing-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 1rem; }
+  .price-card { background: #fafaf8; border-radius: 10px; padding: 1rem; border: 1px solid #eee; }
+  .price-card.highlight { border-left: 4px solid #1D9E75; }
+  .price-label { font-size: 12px; color: #888; margin-bottom: 4px; }
+  .price-num { font-size: 24px; font-weight: 600; color: #111; }
+  .price-num.green { color: #1D9E75; }
+  .price-sub { font-size: 12px; color: #aaa; margin-top: 4px; line-height: 1.5; }
+  .strategy-card { background: #fff; border: 1px solid #eee; border-radius: 12px; padding: 1rem 1.25rem; border-top: 4px solid #1D9E75; }
+  .strategy-card.blue { border-top-color: #378ADD; }
+  .strategy-title { font-size: 14px; font-weight: 600; color: #111; margin-bottom: 8px; }
+  .strategy-meta { font-size: 13px; color: #666; line-height: 1.8; margin-bottom: 8px; }
+  .strategy-meta span { color: #aaa; display: inline-block; width: 44px; }
+  .quote { font-size: 13px; color: #1a5fa0; background: #e6f0fb; border-radius: 8px; padding: 8px 12px; font-style: italic; }
+  .material-item { border: 1px solid #eee; border-radius: 12px; padding: 1rem 1.25rem; margin-bottom: 12px; }
+  .material-title { font-size: 14px; font-weight: 600; color: #111; margin-bottom: 10px; }
+  .material-row { display: grid; grid-template-columns: 72px 1fr; gap: 8px; margin-bottom: 6px; align-items: start; }
+  .material-key { font-size: 12px; color: #aaa; padding-top: 1px; }
+  .material-val { font-size: 13px; color: #555; line-height: 1.65; }
+  .kpi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 1rem; }
+  .kpi-card { background: #f0faf5; border-radius: 10px; padding: 1rem; text-align: center; }
+  .kpi-num { font-size: 32px; font-weight: 600; color: #1D9E75; }
+  .kpi-label { font-size: 12px; color: #666; margin-top: 4px; line-height: 1.5; }
+  .note { font-size: 12px; color: #aaa; line-height: 1.7; margin-top: 0.75rem; }
+  @media (max-width: 600px) {
+    .page { padding: 1.5rem; margin: 1rem; }
+    .two-col, .strategy-row, .kpi-grid, .pricing-row { grid-template-columns: 1fr; }
+    .header-title { font-size: 22px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="header">
+    <div class="header-meta">iSKI 全台四店｜2026</div>
+    <div class="header-title">中階體驗課產品上市計畫</div>
+    <div class="tags">
+      <span class="tag tag-blue">全台四店同步</span>
+      <span class="tag tag-amber">單板＋雙板</span>
+    </div>
+  </div>
+
+  <div style="background: #f0faf5; border-radius: 12px; padding: 1.5rem 1.75rem; margin-bottom: 2rem; border-left: 4px solid #1D9E75;">
+    <div style="font-size: 11px; color: #aaa; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 8px;">Brand Slogan</div>
+    <div style="font-size: 22px; font-weight: 600; color: #0f6e56; line-height: 1.5;">從綠線到黑線，iSKI 一直在。</div>
+  </div>
+
+  <hr class="divider">
+
+  <div class="section">
+    <div class="section-label">P1</div>
+    <div class="section-title">為什麼現在是時候</div>
+    <p class="body-text">iSKI 成立六年，累積了大量初階畢業生，但這群人的下一步在哪裡？</p>
+    <p class="body-text">現有課程結構裡，初階到中階是一個斷層——初階體驗課做的是「讓陌生人進門」，但有雪場經驗、技術卡關的人，沒有一個專門為他們設計的入口。</p>
+    <p class="body-text">中階體驗課填的就是這個缺口。</p>
+  </div>
+
+  <hr class="divider">
+
+  <div class="section">
+    <div class="section-label">P2</div>
+    <div class="section-title">目標客群</div>
+    <div class="two-col" style="margin-bottom: 12px;">
+      <div class="audience-card">
+        <div class="audience-title">主力一：iSKI 既有初階學員</div>
+        <div class="audience-desc">上完初階、沒有續購中階課。已信任 iSKI，只是沒有被召回的理由。</div>
+      </div>
+      <div class="audience-card">
+        <div class="audience-title">主力二：自學型雪友</div>
+        <div class="audience-desc">去過真雪場 3 天以上、靠自己摸索、技術卡關、不知道下一步怎麼練。在外面沒有好的解決方案。</div>
+      </div>
+    </div>
+    <div class="audience-card secondary">
+      <div class="audience-title">次要：有滑雪計畫的新客</div>
+      <div class="audience-desc">知道自己需要練，但還沒進門。</div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <div class="section">
+    <div class="section-label">P3</div>
+    <div class="section-title">產品定位與包裝</div>
+    <div class="positioning-box">
+      <div class="positioning-headline">「你已經會滑了，但你卡住了。」</div>
+      <div class="positioning-sub">不是給初學者的課，也不是要你重新來過——是專門為「滑過、但還不夠好」的人設計的 50 分鐘。</div>
+    </div>
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-label">單板目標</div>
+        <div class="card-value">C turn</div>
+        <div class="card-sub">程度門檻：紅線 S turn 順下（10天以上）</div>
+      </div>
+      <div class="card">
+        <div class="card-label">雙板目標</div>
+        <div class="card-value">半制動到平行</div>
+        <div class="card-sub">程度門檻：綠線全平行（3天以上）</div>
+      </div>
+      <div class="card">
+        <div class="card-label">班型</div>
+        <div class="card-value">3人小班</div>
+        <div class="card-sub">50 分鐘</div>
+      </div>
+    </div>
+    <div class="pricing-row">
+      <div class="price-card">
+        <div class="price-label">二級體驗課</div>
+        <div class="price-num">NT 1,000</div>
+        <div class="price-sub">有一點點經驗者</div>
+      </div>
+      <div class="price-card highlight">
+        <div class="price-label">中階體驗課</div>
+        <div class="price-num green">NT 1,300</div>
+        <div class="price-sub">高 NT300，反映技術門檻與教練程度要求</div>
+      </div>
+    </div>
+    <div class="note" style="margin-top: 8px;">＊以上為 5 月活動定價，正式售價待確認。</div>
+  </div>
+
+  <hr class="divider">
+
+  <div class="section">
+    <div class="section-label">P4</div>
+    <div class="section-title">行銷策略</div>
+    <div class="two-col">
+      <div class="strategy-card">
+        <div class="strategy-title">主軸一：CRM 喚回既有學員</div>
+        <div class="strategy-meta">
+          <div><span>對象</span>曾上初階課、未續購中階的學員名單</div>
+          <div><span>管道</span>Call 客（各店銷售執行）</div>
+        </div>
+        <div class="quote">「你上次來是什麼時候？你的下一步在這裡。」</div>
+      </div>
+      <div class="strategy-card blue">
+        <div class="strategy-title">主軸二：Meta 廣告開新客</div>
+        <div class="strategy-meta">
+          <div><span>對象</span>有雪場經驗的自學型雪友</div>
+          <div><span>受眾</span>滑雪興趣、日本旅遊、雪場行為受眾</div>
+          <div><span>再行銷</span>曾互動過 iSKI 但未購課的暖受眾優先</div>
+        </div>
+        <div class="quote">「你在雪場卡了幾年？50 分鐘告訴你問題在哪。」</div>
+      </div>
+    </div>
+    <div class="two-col" style="margin-top: 16px;">
+      <div class="strategy-card" style="border-top: 4px solid #7F77DD;">
+        <div class="strategy-title">主軸三：口碑擴散</div>
+        <div class="strategy-meta">
+          <div><span>對象</span>現有學員社群圈</div>
+          <div><span>機制</span>推薦人帶朋友來享優惠</div>
+          <div><span>邏輯</span>竹科同溫層口碑大於廣告，一個人分享的觸及質量遠高於付費投放</div>
+        </div>
+      </div>
+      <div class="strategy-card" style="border-top: 4px solid #D85A30;">
+        <div class="strategy-title">主軸四：社群內容經營</div>
+        <div class="strategy-meta">
+          <div><span>管道</span>IG／Reels 持續內容佈局</div>
+          <div><span>邏輯</span>七個素材方向的分發規劃，讓有雪場經驗的人在演算法裡自然找到 iSKI，不只靠付費廣告</div>
+        </div>
+      </div>
+    </div>
+    <div style="margin-top: 16px;">
+      <div class="strategy-card" style="border-top: 4px solid #BA7517;">
+        <div class="strategy-title">主軸五：異業合作</div>
+        <div class="strategy-meta">
+          <div><span>對象</span>日本滑雪團、雪具店、滑雪社群</div>
+          <div><span>邏輯</span>這些地方聚集的就是中階雪友，是最精準的接觸點，導流質量高於一般廣告受眾</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <div class="section">
+    <div class="section-label">P5</div>
+    <div class="section-title">素材規劃</div>
+
+    <div style="font-size: 12px; color: #aaa; margin-bottom: 12px; letter-spacing: 0.05em;">— 引爆點 —</div>
+
+    <div class="material-item" style="border-left: 4px solid #1D9E75;">
+      <div class="material-title">① 「不穩定感」共鳴短影片　<span style="font-size: 11px; color: #2a7a4b; background: #e6f4ec; padding: 2px 8px; border-radius: 20px; font-weight: 400;">最先發／主力廣告素材</span>　<span style="font-size: 11px; color: #fff; background: #1D9E75; padding: 2px 8px; border-radius: 20px; font-weight: 400;">機上</span></div>
+      <div class="material-row"><div class="material-key">訴求核心</div><div class="material-val">「看起來會但其實不穩」的滑行畫面，對比修正後的流暢動作——精準刺中沉默族群，天然引發轉發</div></div>
+      <div class="quote" style="margin-top: 8px;">「轉得出來，但轉不好——這才是最難突破的關卡。」</div>
+    </div>
+
+    <div class="material-item">
+      <div class="material-title">② 滑雪程度互動測驗影片　<span style="font-size: 11px; color: #fff; background: #1D9E75; padding: 2px 8px; border-radius: 20px; font-weight: 400;">機上</span></div>
+      <div class="material-row"><div class="material-key">訴求核心</div><div class="material-val">教練示範一個動作，問觀眾「你能做到幾分？」留言區自然變討論區，演算法助推</div></div>
+      <div class="quote" style="margin-top: 8px;">「這個動作你打幾分？留言告訴我。」</div>
+    </div>
+
+    <div style="font-size: 12px; color: #aaa; margin: 16px 0 12px; letter-spacing: 0.05em;">— 建立信任 —</div>
+
+    <div class="material-item">
+      <div class="material-title">③ 教練訪談影片　<span style="font-size: 11px; color: #1a5fa0; background: #e6f0fb; padding: 2px 8px; border-radius: 20px; font-weight: 400;">核心差異化素材</span>　<span style="font-size: 11px; color: #fff; background: #1D9E75; padding: 2px 8px; border-radius: 20px; font-weight: 400;">機上拍攝</span></div>
+      <div class="material-row"><div class="material-key">訴求核心</div><div class="material-val">iSKI 教練雪季同時在日本雪場執教——這不是室內模擬，是雪場教練帶你在機上針對真實問題修正</div></div>
+      <div class="quote" style="margin-top: 8px;">「我在石打丸山教過上百個學員，我知道他們在哪裡卡住。所以我回來機上，專門修那一個問題。」</div>
+    </div>
+
+    <div class="material-item">
+      <div class="material-title">④ Before / After 學員挑戰系列　<span style="font-size: 11px; color: #fff; background: #1D9E75; padding: 2px 8px; border-radius: 20px; font-weight: 400;">機上</span></div>
+      <div class="material-row"><div class="material-key">訴求核心</div><div class="material-val">上課前後同一動作並排剪輯，給人具體的希望感——看到真實改變，比任何文案都有說服力</div></div>
+      <div class="quote" style="margin-top: 8px;">「同一個人，同一個動作，差了一堂課。」</div>
+    </div>
+
+    <div style="font-size: 12px; color: #aaa; margin: 16px 0 12px; letter-spacing: 0.05em;">— 轉換收割 —</div>
+
+    <div class="material-item">
+      <div class="material-title">⑤ 課程實錄剪輯　<span style="font-size: 11px; color: #fff; background: #1D9E75; padding: 2px 8px; border-radius: 20px; font-weight: 400;">機上</span></div>
+      <div class="material-row"><div class="material-key">訴求核心</div><div class="material-val">讓猶豫中的受眾看到「來了之後會發生什麼事」，降低決策門檻</div></div>
+    </div>
+
+    <div class="material-item">
+      <div class="material-title">⑥ 學員機上成果片段　<span style="font-size: 11px; color: #fff; background: #1D9E75; padding: 2px 8px; border-radius: 20px; font-weight: 400;">機上</span></div>
+      <div class="material-row"><div class="material-key">訴求核心</div><div class="material-val">即時成就感，讓受眾看到「真的學得會」</div></div>
+      <div class="quote" style="margin-top: 8px;">「這是他第一次在機上完成 C turn。」</div>
+    </div>
+
+    <div class="material-item">
+      <div class="material-title">⑦ 學員 UGC 短影片　<span style="font-size: 11px; color: #fff; background: #1D9E75; padding: 2px 8px; border-radius: 20px; font-weight: 400;">機上</span></div>
+      <div class="material-row"><div class="material-key">訴求核心</div><div class="material-val">課程結束後學員自拍 15 秒心得，UGC 信任感是品牌素材的三倍，成本幾乎為零</div></div>
+    </div>
+
+    <div style="background: #fdf3e3; border-radius: 10px; padding: 1rem 1.25rem; margin-top: 1.5rem; border-left: 4px solid #BA7517;">
+      <div style="font-size: 13px; font-weight: 600; color: #854F0B; margin-bottom: 10px;">待確認事項</div>
+      <div style="display: flex; gap: 8px; margin-bottom: 8px; align-items: flex-start;">
+        <span style="font-size: 13px; color: #854F0B; font-weight: 600; min-width: 20px;">1.</span>
+        <span style="font-size: 13px; color: #666; line-height: 1.7;">iSKI 是否有既有雪場影片素材可用？教練在日本執教期間是否留有片段——若有，可大幅強化教練訪談與品牌差異化說服力。</span>
+      </div>
+      <div style="display: flex; gap: 8px; align-items: flex-start;">
+        <span style="font-size: 13px; color: #854F0B; font-weight: 600; min-width: 20px;">2.</span>
+        <span style="font-size: 13px; color: #666; line-height: 1.7;">Before / After 系列是否有學員願意配合拍攝？哪怕一至兩位，即可製作出高說服力的見證素材。</span>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <div class="section">
+    <div class="section-label">P6</div>
+    <div class="section-title">KPI 目標</div>
+    <div class="kpi-grid">
+      <div class="kpi-card">
+        <div class="kpi-num" style="font-size: 24px;">TBD</div>
+        <div class="kpi-label">全台首月目標體驗堂數</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-num" style="font-size: 24px;">TBD</div>
+        <div class="kpi-label">每店平均目標堂數</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-num" style="font-size: 24px;">TBD</div>
+        <div class="kpi-label">CRM 潛在喚回對象（人）</div>
+      </div>
+    </div>
+    <div class="note">待會員購課資料確認後填入。</div>
+  </div>
+
+</div>
+</body>
+</html>
